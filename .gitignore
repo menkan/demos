@@ -1,2 +1,5 @@
 # 取消上传WebStorm内容
 .idea/
+
+# 取消node_modules
+node_modules
