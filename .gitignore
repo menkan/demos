@@ -3,3 +3,6 @@
 
 # 取消node_modules
 node_modules
+
+# 取消 package-lock
+package-lock.json
