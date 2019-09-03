@@ -3,6 +3,7 @@
  * Descriptions: common utilTool
 */
 
+// forEach
 function forEach(array, callback) {
   let index = -1
   const lengths = array.length
@@ -23,13 +24,15 @@ class common {
   }
 
   getTypeof(param) {
-    let toString = Object.prototype.toString
-    let str = toString.call(param)
+    let str = Object.prototype.toString.call(param)
     return str.substring(8, str.length - 1)
   }
 
-  // 深拷贝
   deepCopy(param, map = new WeakMap()) {
+    // 1、判断条件
+    // 2、可继续遍历的类型, map, set...
+    // 3、不可继续遍历类型, 基本类型
+    // 4、函数拷贝
     if(typeof param === 'object') {
       const isArray = Array.isArray(param)
       let temporary = isArray ? [] : {}
@@ -37,15 +40,9 @@ class common {
         return map.get(param)
       }
       map.set(param, temporary)
-      const keys = isArray ? undefined : Object.assign(param)
-      // for(const key in param) {
-      //   temporary[key] = this.deepCopy(param[key], map)
-      // }
+      const keys = isArray ? undefined : Object.keys(param)
       forEach(keys || param, (value, key) => {
-        console.log('keys>>>', keys)
-        if (keys) {
-          key = value;
-        }
+        if (keys) { key = value }
         temporary[key] = this.deepCopy(param[key], map)
       })
       return temporary
@@ -54,6 +51,11 @@ class common {
     }
   }
 
+  countDown(time) {
+
+  }
+
+  // - more -
 }
 
 module.exports = new common

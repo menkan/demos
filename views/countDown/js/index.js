@@ -1,3 +1,7 @@
+/**
+ * Created by menkan_mark on 2019/03/30;
+ * Description: 可以改成jQuery类型的,挺好;
+ */
 (function(window){
   'use strict'
 
@@ -9,8 +13,6 @@
   }
 
   let element = document.querySelector('#timeDown')
-
-
 
 
 })(window);

@@ -26,10 +26,10 @@ console.log('copy print >>>>   ', copyObj)
 console.timeEnd()
 
 
-console.log(Object.keys({
-  a: '1',
-  b: '2',
-  c: 3,
-  d: 4,
-  e: 5
-}))
+// console.log(Object.keys({
+//   a: '1',
+//   b: '2',
+//   c: 3,
+//   d: 4,
+//   e: 5
+// }))
