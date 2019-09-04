@@ -2,7 +2,15 @@
  * Created by menkan_mark on 2019/03/30;
  * Last modify Time 2019/09/04: 13:00:00
  * Description: 可以改成jQuery -- soeasy library,挺好;
- */
+*/
+
+/*
+一、target
+    开始时间,结束时间
+二、setTimeOut 循环调用(setInterval 会存在bug...)
+三、前端倒计时存在时间误差,尽可能减到最小(防止误差的方法[..])
+...
+*/
 
 (function(global, factory){
   if(typeof module === 'object' && typeof module.exports === 'object') {
