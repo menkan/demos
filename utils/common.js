@@ -19,17 +19,41 @@ class common {
     this.createdTime = '2019/09/03'
   }
 
-  fillZero(number) {
-    return '' + (number >= 10 ? number : `0${number}`)
+  /**
+   * @description fillZero
+   * @param {target} string fill Zero or other
+   * @param {length} len fill length
+   * @param {symbol} symbol symbol default ` `
+   */
+  fillZero(string, len, symbol) {
+    string = String(this.getTypeof(string) === 'Number' && Math.abs(string) || string)
+    let index = -1
+    if(!symbol && symbol !== 0) symbol = ' '
+    len = len - string.length
+    while(++index < len) {
+      string = `${symbol}${string}`
+    }
+    return string
+    // so easy a methods
+    // return '' + (number >= 10 ? number : `0${number}`)
   }
 
+  /**
+   * @description Query for it’s type
+   * @param {param} param 
+   */
   getTypeof(param) {
     let str = Object.prototype.toString.call(param)
     return str.substring(8, str.length - 1)
   }
 
+  /**
+   * @description deep copy
+   * @param {*} param object or other
+   * @param {*} map  No need  transmission param
+   */
   deepCopy(param, map = new WeakMap()) {
-    // 1、判断条件
+    // 1、判断条件--> 判断什么类型 通过 this.getTypeof
     // 2、可继续遍历的类型, map, set...
     // 3、不可继续遍历类型, 基本类型
     // 4、函数拷贝
@@ -49,10 +73,6 @@ class common {
     } else {
       return param
     }
-  }
-
-  countDown(time) {
-
   }
 
   // - more -
