@@ -74,8 +74,56 @@ class common {
       return param
     }
   }
+  /**
+   * @description Query URL Params.
+   * @param {String} urlString
+   * @return Object 
+   */
+  getUrlQueryParams(urlString) {
+    const temporary = {}
 
-  // - more -
+    // Way One
+    // const urlObj = new URLSearchParams(urlString)
+    // for(const k in urlObj) {
+    //   temporary[k] = urlObj[k]
+    // }
+
+    // Way Two
+    // [Browser]
+    let searchStr = window.location.search.substring(1)   
+    let paramArray = searchStr.split('&')
+    for(const key of paramArray) {
+      let arr = key.split('=')
+      temporary[arr[0]] = arr[1]
+    }
+    return temporary
+  }
+
+  /**
+   * Mobile terminal
+   * 移动端查看当前是什么pc
+   */
+  getBrowserInfos() {
+    // 主要支持 安卓 & 苹果 & ipad & 微信 & 支付宝 & 是否是手机端
+    return {
+      isAndroid: Boolean(navigator.userAgent.match(/android/ig)),      
+      isIphone: Boolean(navigator.userAgent.match(/iphone|ipod/ig)),      
+      isIpad: Boolean(navigator.userAgent.match(/ipad/ig)),      
+      isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/ig)),      
+      isAli: Boolean(navigator.userAgent.match(/AlipayClient/ig)),
+      isPhone: Boolean(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent))
+    }
+  }
+
+  // @Function 防抖
+  // @Function 节流
+
+  // 判断小数是否相等
+  // 不是很理解
+  epsEqu(x,y) {
+    return Math.abs(x - y) < Math.pow(2, -53);
+  }
+  // --- more ---
 }
 
 module.exports = new common
