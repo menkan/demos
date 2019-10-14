@@ -1,9 +1,13 @@
 {
   "name": "demos",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run dev",
+    "dev": "webpack --config ./config//webpack.config.js --progress --display-modules --colors --display-reason --watch",
+    "server": "webpack-dev-server",
+    "bundle": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,7 +15,7 @@
     "url": "git+https://github.com/menkan/demos.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "menkan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/menkan/demos/issues"
@@ -20,5 +24,12 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9"
   }
 }

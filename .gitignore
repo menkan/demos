@@ -1,8 +1,4 @@
-# 取消上传WebStorm内容
 .idea/
-
-# 取消node_modules
 node_modules
-
-# 取消 package-lock
 package-lock.json
+dist

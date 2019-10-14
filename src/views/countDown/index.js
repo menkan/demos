@@ -12,6 +12,22 @@
 ...
 */
 
+
+/*
+soeasy 
+
+Params:
+{
+	// 目标参数
+	target: ['2019', '09', '15', '12', '12', '12']
+	//
+	startDate
+}
+
+Event:
+	init()
+*/
+
 (function(global, factory){
   if(typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = 
@@ -27,10 +43,9 @@
     factory(global)
   }
 })(typeof window !== "undefined" ? window : this, function(global, noGlobal) {
-  var gg = 'ggg333'
 
-  var soeasy = function (selector){
-    return new soeasy.fn.init()
+  var soeasy = function (params){
+    return new soeasy.fn.init(params)
   }
   
   soeasy.fn = soeasy.prototype = {
@@ -40,7 +55,9 @@
     }
   }
 
-  var init = soeasy.fn.init = function (){
+  var init = soeasy.fn.init = function (params){
+	  console.log('2333333- - - - - ', params)
+	  this.a = params.a
     // 构造函数  init
     return '333'
   }
@@ -56,6 +73,7 @@
   soeasy.each = function(){
     console.log('echo')
   }
+
   if (!noGlobal) { global.soeasy = global.$ = soeasy }
   return soeasy
 });
