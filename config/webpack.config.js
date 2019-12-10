@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-    entry: '../src/main.js',
+    entry: path.resolve(__dirname, '../index.js'),
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'app.js'
@@ -18,5 +18,15 @@ module.exports = {
     },
 
     // plugins: []
-    mode: 'development'
+    mode: 'development',
+
+    // 配置 webpack 服务器
+    devServer: {
+        contentBase: path.resolve(__dirname, '../'),
+        host: '127.0.0.1',
+        port: 8081,
+        compress: true,
+        inline: true,
+        historyApiFallback: true,
+    },
 }
