@@ -1,6 +1,7 @@
 /**
- * Craeted by 2019/06/18 10:40;
- * Descriptions: common utilTool
+ * @Craeted by menkan_mark on 2019/06/18 10:40;
+ * @LastChanged by menkan_mark on 2019/12/12
+ * @Descriptions common utilTool
 */
 
 // forEach
@@ -102,9 +103,9 @@ class common {
   /**
    * Mobile terminal
    * 移动端查看当前是什么pc
+   * 主要支持 安卓 & 苹果 & ipad & 微信 & 支付宝 & 是否是手机端
    */
   getBrowserInfos() {
-    // 主要支持 安卓 & 苹果 & ipad & 微信 & 支付宝 & 是否是手机端
     return {
       isAndroid: Boolean(navigator.userAgent.match(/android/ig)),      
       isIphone: Boolean(navigator.userAgent.match(/iphone|ipod/ig)),      
@@ -116,14 +117,54 @@ class common {
   }
 
   // @Function 防抖
+  // wait 秒内只执行一次。 多次调用只执行最后一次
+  debounce(fn, wait) {
+    let timer = null;
+    return function() {
+      let context = this;
+      let args = arguments;
+      if(timer) { clearTimeout(timer); timer = null; };
+      timer = setTimeout(function() {
+        fn.apply(context, args);
+      }, wait);
+    }
+  }
   // @Function 节流
+  throttle(fn, gapTime) {
+    let _lastTime = null
+    return function() {
+      let _nowTime = +new Date();
+      if(_nowTime - _lastTime > gapTime || !_lastTime) {
+        fn();_lastTime = _nowTime;
+      }
+    }
+  }
 
   // 判断小数是否相等
   // 不是很理解
   epsEqu(x,y) {
     return Math.abs(x - y) < Math.pow(2, -53);
   }
-  // --- more ---
+
+  // count Down
+  countDown () {}
+
+  // Order request（promise）
+  orderList(arr) {
+    return new Promise((resolve, reject) => {
+      let index = 0
+      next()
+      function next() {
+        arr[index].then(function (res) {
+          index++;
+          if (index == arr.length) resolve()
+          else next()
+        }).catch(e => {
+          reject()
+        })
+      }
+    })
+  }
 }
 
 module.exports = new common
