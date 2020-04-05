@@ -9,11 +9,10 @@ class Cookie {
     this.name = 'cookie'
   }
 
-  setCookie (key, value, expires, path = '/') {
+  setCookie (key, value, expires=60, path = '/') {
     let date = new Date()
     date.setTime(date.getTime() + expires * 60 * 60 * 1000)
-    // 默认;path=/
-    // 如何更换path还需要查看文献
+    // 默认;path=/  如何更换path还需要查看文献
     document.cookie = `${key}=${escape(value)};expires=${date.toUTCString()}`
   }
 
@@ -23,11 +22,6 @@ class Cookie {
     var cval=getCookie(name);
     if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toUTCString();
   }
-
-  // 更新就是设置cookie -> 调用
-  // updateCookie (key, value) {
-  //   document.cookie = `${key}=${escape(value)}`
-  // }
 
   getCookie (name) {
     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");

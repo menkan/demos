@@ -1,68 +1,57 @@
-// ===========  common Var  =============
 /*
-	Author: menKan_mark
+	Author: 徐同泽
 	UpdateTime: 2019/10/02
 	Descriptions: 炫酷跳动时钟
 */
-const CANVAS_WIDTH = '1024'					// canvas 宽度				
-const CANVAS_HEIGHT = '600'					// canvas 高度
-const RADIUS = 7							// 一个小球的半径
 
-const MARGIN_TOP = 60						// 距离 canvas 顶部距离
-const MARGIN_LEFT = 70						// 距离 canvas 左边距离
+const CANVAS_WIDTH = '1024'       // canvas 宽度
+const CANVAS_HEIGHT = '600'       // canvas 高度
+const RADIUS = 7                  // 一个小球的半径
+const MARGIN_TOP = 60             // 距离 canvas 顶部距离
+const MARGIN_LEFT = 70            // 距离 canvas 左边距离
 
-const endDate = new Date(2019, 9 - 1, 22, 18, 30, 0)
+// 结束时间;倒计时会用到这个、需要更改逻辑
+const endDate = getEndTime(2019, 9 - 1, 22, 18, 30, 0)
 var curShowTimeSeconds = 0
 
 var balls = []
 const colour = ['red', 'green', 'yellow', 'pink', 'yellowgreen']
 
 const digits = digit
-window.onload = function(){
-  var ELEMENT = document.getElementById('canvas')
 
-  // Set Element Config...
-  ELEMENT.width = CANVAS_WIDTH
-  ELEMENT.height = CANVAS_HEIGHT
-  var context = ELEMENT.getContext('2d')
 
-  curShowTimeSeconds = getNewTime()
+let getEndTime = (year = 2020, month = 1, day = 1, hour = 0, minutes = 0, seconds = 0) => new Date(year, month - 1, day, hour, minutes, seconds);
 
-  init(context)
-  console.log(curShowTimeSeconds, curShowTimeSeconds.getSeconds())
-
-  setInterval(() => {
-    init(context)
-    update()
-  }, 60);
-}
-
-function getNewTime() {
-  return new Date
-}
+// Get current Time;
+let getNewTime = () => new Date;
 
 function init(ctx) {
+  let hour = curShowTimeSeconds.getHours()
+  let minutes = curShowTimeSeconds.getMinutes()
+  let seconds = curShowTimeSeconds.getSeconds()
 
-  var hour = curShowTimeSeconds.getHours()
-  var minutes = curShowTimeSeconds.getMinutes()
-  var seconds = curShowTimeSeconds.getSeconds()
-
+  // clean canves
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 
+  // Hours
   readerDigit(MARGIN_LEFT, MARGIN_TOP, parseInt(hour / 10), ctx)
   readerDigit(MARGIN_LEFT + 15 * (RADIUS + 1), MARGIN_TOP, parseInt(hour % 10), ctx)
-  
+
+  // :
   readerDigit(MARGIN_LEFT + 30 * (RADIUS + 1), MARGIN_TOP, 10, ctx)
   
+  // Minutes
   readerDigit(MARGIN_LEFT + 39 * (RADIUS + 1), MARGIN_TOP, parseInt(minutes / 10), ctx)
   readerDigit(MARGIN_LEFT + 54 * (RADIUS + 1), MARGIN_TOP, parseInt(minutes % 10), ctx)
   
+  // :
   readerDigit(MARGIN_LEFT + 69 * (RADIUS + 1), MARGIN_TOP, 10, ctx)
 
+  // Seconds
   readerDigit(MARGIN_LEFT + 78 * (RADIUS + 1), MARGIN_TOP, parseInt(seconds / 10), ctx)
   readerDigit(MARGIN_LEFT + 93 * (RADIUS + 1), MARGIN_TOP, parseInt(seconds % 10), ctx)
 
-  for(var i = 0; i < balls.length; i++) {
+  for(let i = 0; i < balls.length; i++) {
     ctx.fillStyle = balls[i].color
     ctx.beginPath()
     ctx.arc(balls[i].x, balls[i].y, RADIUS, 0, 2*Math.PI, true)
@@ -71,6 +60,7 @@ function init(ctx) {
   }
 }
 
+// 页面挂载default balls
 function readerDigit(x, y, number, ctx) {
   let r = RADIUS
   ctx.fillStyle = 'rgb(0, 102, 153)'
@@ -92,19 +82,18 @@ function readerDigit(x, y, number, ctx) {
   }
 }
 
-// Update
 function update() {
-  var newTime = getNewTime()
-  var oldTime = curShowTimeSeconds
+  let newTime = getNewTime()
+  let oldTime = curShowTimeSeconds
 
   
-  var newH = newTime.getHours()
-  var newM = newTime.getMinutes()
-  var newS = newTime.getSeconds()
+  let newH = newTime.getHours()
+  let newM = newTime.getMinutes()
+  let newS = newTime.getSeconds()
   
-  var oldH = oldTime.getHours()
-  var oldM = oldTime.getMinutes()
-  var oldS = oldTime.getSeconds()
+  let oldH = oldTime.getHours()
+  let oldM = oldTime.getMinutes()
+  let oldS = oldTime.getSeconds()
 
   if(newS != oldS) {
     if(parseInt(oldH / 10) !== parseInt(newH / 10)) {
@@ -132,11 +121,12 @@ function update() {
   updateBalls()
 }
 
+// 添加小球
 function addBalls(x, y, num) {
   for(var i = 0; i < digits[num].length; i++) {
     for(var j = 0; j < digits[num][i].length; j++) {
       if(digits[num][i][j]) {
-        var oneBall = {
+        var aBall = {
           x: x + j * 2 * (RADIUS + 1) + (RADIUS + 1),
           y: y + i * 2 * (RADIUS + 1) + (RADIUS + 1),
           g: 1.5 + Math.random(),
@@ -144,7 +134,7 @@ function addBalls(x, y, num) {
           vy: -5,
           color: colour[Math.floor(Math.random() * colour.length)],
         }
-        balls.push(oneBall)
+        balls.push(aBall)
       }
     }
   }
@@ -170,4 +160,20 @@ function updateBalls() {
       balls[i].vy = - balls[i].vy * 0.75
     }
   }
+}
+
+window.onload = function(){
+  // Query element and set config.
+  var ELEMENT = document.getElementById('canvas')
+  ELEMENT.width = CANVAS_WIDTH
+  ELEMENT.height = CANVAS_HEIGHT
+
+  var context = ELEMENT.getContext('2d')
+  curShowTimeSeconds = getNewTime()
+
+  init(context)
+  setInterval(() => {
+    init(context)
+    update()
+  }, 60);
 }

@@ -1,7 +1,11 @@
+// Javascript 设计模式学习;
 
-const Cook = require('./src/utils/cookie')
-const cookie = new Cook()
+/**
+ *  一、工厂模式
+ */
 
-cookie.setCookie('name', '。。。', 48)
-// console.log('......', cookie.getCookie('name'))
-// cookie.updateCookie('name', 'segtssssss')
+ function factoryModule({ name }) {
+    let Obj = {}
+    Obj.name = name
+    return new Obj()
+ }
