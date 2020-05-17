@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
     entry: path.resolve(__dirname, '../index.js'),
-
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'dist.js'
@@ -22,13 +21,11 @@ module.exports = {
             }
         ]
     },
-
     // plugins: []
     mode: 'development',
-
     // 配置 webpack 服务器
     devServer: {
-        contentBase: path.resolve(__dirname, '..'),
+        contentBase: path.resolve(__dirname, '../'),
         host: '127.0.0.1',
         port: '8081',
         compress: true,

@@ -19,7 +19,7 @@ async function clean(cd){
 /* handle css */
 function handleCss(cd){
   return src('./src/views/css/sass/*.scss')
-    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sass.sync({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(dest('./src/views/css/style'))
 }
 
