@@ -15,5 +15,16 @@ function cobj() {
 }
 
 let obj = new cobj()
-
 obj.getHello()
+
+// new lists
+
+function format(numbers) {
+  let formatTpl = '(xxx) xxx-xxxx'
+  for(let i = 0; i < numbers.length; i++){
+    formatTpl = formatTpl.replace('x', numbers[i])
+  }
+  return formatTpl
+}
+console.log(format([2, 3, 4, 1, 5, 0, 9, 8, 7, 6]))
+
