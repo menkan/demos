@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rocket</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+    body {
+      width: 100vw;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .rocket {
+      width: 140px;
+      height: 147px;
+      background: url(./assets/rocket.png) no-repeat;
+      background-position-x: -603px;
+      position: fixed;
+      right: 12px;
+      bottom: 15px;
+    }
+    .rocket:hover {
+      animation:test111 .6s infinite step-end;
+    }
+    @keyframes test111 {
+      0%{
+        background-position-x: -2px;
+      }
+      20%{
+        background-position-x: -152px;
+      }
+      40%{
+        background-position-x: -302px;
+      }
+      60%{
+        background-position-x: -453px;
+      }
+      80%{
+        background-position-x: -603px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Rocket</h1>
+    <h6>bilibili.cheers</h6>
+  </div>
+  <div class="rocket"></div>
+</body>
+</html>
