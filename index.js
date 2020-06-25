@@ -29,3 +29,8 @@
     Obj.name = name
     return new Obj()
  }
+
+import utils from './src/utils/common.js'
+
+
+console.log(utils.checkCardNumber('0123456789'));

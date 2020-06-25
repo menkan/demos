@@ -20,6 +20,29 @@ class common {
     this.createdTime = '2019/09/03'
   }
 
+  // check Card number conform.
+  checkCardNumber(str){
+    if(!str) {
+      return new Error('params no exits')
+    }
+    let s = str;
+    s = Array.prototype.reverse.apply(s.split(''))
+    console.log(s)
+
+    let old = 0;
+    let ever = 0;
+
+    for(let i = 0; i < s.length; i+=2) {
+      // pass...
+    }
+
+    for(let j = 1; j < s.length; j+=2) {
+      // pass...
+    }
+
+    return false;
+  }
+
   /**
    * @description fillZero
    * @param {target} string fill Zero or other
