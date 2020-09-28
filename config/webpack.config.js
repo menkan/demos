@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     entry: path.resolve(__dirname, '../index.js'),
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, '../dist/'),
         filename: 'dist.js'
     },
 
@@ -13,10 +13,10 @@ module.exports = {
                 test: /\.js$/,
                 loader: "babel-loader",
                 include: [
-                    path.resolve(__dirname, "..", "index.js"),
+                    path.resolve(__dirname, "../", "index.js"),
                 ],
                 exclude: [
-                    path.resolve(__dirname, '..', 'node_modules'),
+                    path.resolve(__dirname, '../', 'node_modules'),
                 ]
             }
         ]
@@ -27,7 +27,7 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, '../'),
         host: '127.0.0.1',
-        port: '8081',
+        port: '8181',
         compress: true,
         inline: true,
         historyApiFallback: true,

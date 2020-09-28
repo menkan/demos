@@ -17,20 +17,18 @@
 // 16.优化socket聊天室
 // 17.HTML实现markdown编辑器实时预览
 // 18.nodejs私人笔记
-
 // Javascript 设计模式学习;
 
-/**
- *  一、工厂模式
- */
 
- function factoryModule({ name }) {
-    let Obj = {}
-    Obj.name = name
-    return new Obj()
- }
+// Demos.
 
-import utils from './src/utils/common.js'
+let proxy = new Proxy({}, {
+  get: function(target, propKey) {
+    console.log('我被调用获取了——————>>', target, propKey)
+    return propKey
+  }
+})
 
+console.log(proxy)
 
-console.log(utils.checkCardNumber('0123456789'));
+console.log(proxy.title)
