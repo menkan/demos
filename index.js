@@ -18,26 +18,5 @@
 // 17.HTML实现markdown编辑器实时预览
 // 18.nodejs私人笔记
 // Javascript 设计模式学习;
-
-
-// Demos.
-// let person = {
-//   name: '张三'
-// }
-
-let proxy = new Proxy({}, {
-  get: function(target, propKey) {
-    console.log('我被调用获取了——————>>', target, propKey)
-    return target[propKey]
-  }
-})
-
-// proxy -> get
-// 可以被新对象继承、Object.create(object)
-
-// let bproxy = Object.create(proxy)
-// console.log(bproxy)
-// console.log('__>>', bproxy.name)
 //
-// 创建数组监控拦截内容
-function S
+
