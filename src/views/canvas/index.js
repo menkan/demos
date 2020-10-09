@@ -1,8 +1,8 @@
-/*
-	Author: 徐同泽
-	UpdateTime: 2019/10/02
-	Descriptions: 炫酷跳动时钟
-*/
+/**
+ * @Author menKan(xutongze)
+ * @UpdateTime 2019/10/02
+ * @Descriptions 炫酷跳动时钟
+ */
 
 const CANVAS_WIDTH = '1024'       // canvas 宽度
 const CANVAS_HEIGHT = '600'       // canvas 高度
@@ -10,20 +10,16 @@ const RADIUS = 7                  // 一个小球的半径
 const MARGIN_TOP = 60             // 距离 canvas 顶部距离
 const MARGIN_LEFT = 70            // 距离 canvas 左边距离
 
-// 结束时间;倒计时会用到这个、需要更改逻辑
-const endDate = getEndTime(2019, 9 - 1, 22, 18, 30, 0)
-var curShowTimeSeconds = 0
 
-var balls = []
-const colour = ['red', 'green', 'yellow', 'pink', 'yellowgreen']
-
-const digits = digit
-
-
+let getNewTime = () => new Date;
 let getEndTime = (year = 2020, month = 1, day = 1, hour = 0, minutes = 0, seconds = 0) => new Date(year, month - 1, day, hour, minutes, seconds);
 
-// Get current Time;
-let getNewTime = () => new Date;
+// 结束时间;倒计时会用到这个、需要更改逻辑
+const endDate = getEndTime(2021, 12, 22, 18, 30, 0)
+const colour = ['red', 'green', 'yellow', 'pink', 'yellowgreen']
+const digits = digit
+let curShowTimeSeconds = 0
+let balls = []
 
 function init(ctx) {
   let hour = curShowTimeSeconds.getHours()
@@ -66,7 +62,6 @@ function readerDigit(x, y, number, ctx) {
   ctx.fillStyle = 'rgb(0, 102, 153)'
   for(var i = 0; i < digits[number].length; i++) {
     for(var j = 0; j < digits[number][i].length; j++) {
-      // console.log(digits[number][i])
       if(digits[number][i][j]) {
         ctx.beginPath()
         ctx.arc(
@@ -86,7 +81,6 @@ function update() {
   let newTime = getNewTime()
   let oldTime = curShowTimeSeconds
 
-  
   let newH = newTime.getHours()
   let newM = newTime.getMinutes()
   let newS = newTime.getSeconds()
@@ -102,14 +96,12 @@ function update() {
     if(parseInt(oldH % 10) !== parseInt(newH % 10)){
       addBalls(MARGIN_LEFT + 15 * (RADIUS + 1), MARGIN_TOP, parseInt(newH % 10))
     }
-
     if(parseInt(oldM / 10) !== parseInt(newM / 10)) {
       addBalls(MARGIN_LEFT + 39 * (RADIUS + 1), MARGIN_TOP, parseInt(newM / 10))
     }
     if(parseInt(oldM % 10) !== parseInt(newM % 10)){
       addBalls(MARGIN_LEFT + 54 * (RADIUS + 1), MARGIN_TOP, parseInt(newM % 10))
     }
-
     if(parseInt(oldS / 10) !== parseInt(newS / 10)) {
       addBalls(MARGIN_LEFT + 78 * (RADIUS + 1), MARGIN_TOP, parseInt(newS / 10))
     }
@@ -138,13 +130,11 @@ function addBalls(x, y, num) {
       }
     }
   }
-
   var count = 0
   for(var k = 0; k < balls.length; k++) {
     if(balls[k].x + RADIUS > 0 && balls[k].x + RADIUS < CANVAS_WIDTH)
       balls[count++] = balls[k]
   }
-
   while(balls.length > Math.min(count, 300)) {
     balls.pop()
   }
@@ -165,12 +155,10 @@ function updateBalls() {
 window.onload = function(){
   // Query element and set config.
   var ELEMENT = document.getElementById('canvas')
+  var context = ELEMENT.getContext('2d')
   ELEMENT.width = CANVAS_WIDTH
   ELEMENT.height = CANVAS_HEIGHT
-
-  var context = ELEMENT.getContext('2d')
   curShowTimeSeconds = getNewTime()
-
   init(context)
   setInterval(() => {
     init(context)

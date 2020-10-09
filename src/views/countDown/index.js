@@ -18,7 +18,8 @@ soeasy
 
 Params:
 {
-	// 目标参数
+  // 目标参数
+  // Example
 	target: ['2019', '09', '15', '12', '12', '12']
 	//
 	startDate
